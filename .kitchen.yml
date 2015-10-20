@@ -1,6 +1,6 @@
 ---
 driver:
-    name: vagrant
+  name: vagrant
 
 provisioner:
   name: ansible_playbook
@@ -21,3 +21,7 @@ platforms:
       network:
       - ['forwarded_port', {guest: 8080, host: 8080}]
       - [ 'private_network', { ip: '192.168.33.11' } ]
+
+suites:
+  - name: tomcat
+

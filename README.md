@@ -1,5 +1,6 @@
 # ansible_repo
-ansible_repo for testing ansible using test kitchen
+ansible_repo for testing ansible using test kitchen and ansiblespec testing
+
 
 ## Standalone Tomcat Deployment
 
@@ -20,4 +21,6 @@ Application Server running on the ports you chose, on the target machines.
 
 This is a very simple playbook and could serve as a starting point for more
 complex Tomcat-based projects.
+
+
 
