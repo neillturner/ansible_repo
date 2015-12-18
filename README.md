@@ -1,34 +1,34 @@
 # ansible_repo
 ansible_repo for testing ansible using test kitchen and ansiblespec verifying
 
+```
+                                                                     TOMCAT SERVERS
+     TEST KITCHEN              ANSIBLE AND SERVERSPEC
+     WORKSTATION               SERVER                             +------------------------+
+                             +-----------------------+            |   +---------+          |
+                             |                       |            |   |Tomcat   |          |
++-------------------+        |                   +---------------->   |         |          |
+|                   |        |                   |   |            |   +---------+          |
+|    Workstation    |        |                   |   |    +------->                        |
+|    test-kitchen   |        |                   |   |    |       |                        |
+|    kitchen-ansible|        |                   |   |    |       |                        |
+|                   |  create|                   |   |    |       +------------------------+
+|     CREATE +--------------->      install      |   |    |
+|                   |  server|      and run      |   |    |
+|     CONVERGE+-------------------->ANSIBLE  +---+   |    |       +------------------------+
+|                   |        |               +-------------------->  +----------+          |
+|                   |        | install and run       |    |       |  |Tomcat    |          |
+|    VERIFY+------------------>Busser-ansiblespec +-------+       |  |          |          |
++-------------------+        |  +                 |  |            |  +----------+          |
+                             |  +--->ServerSpec   +--------------->                        |
+                             |                       |            |                        |
+                             +-----------------------+            |                        |
+                                                                  +------------------------+
 
-#                                                                     TOMCAT SERVERS
-#     TEST KITCHEN              ANSIBLE AND SERVERSPEC
-#     WORKSTATION               SERVER                             +------------------------+
-#                             +-----------------------+            |   +---------+          |
-#                             |                       |            |   |Tomcat   |          |
-#+-------------------+        |                   +---------------->   |         |          |
-#|                   |        |                   |   |            |   +---------+          |
-#|    Workstation    |        |                   |   |    +------->                        |
-#|    test-kitchen   |        |                   |   |    |       |                        |
-#|    kitchen-ansible|        |                   |   |    |       |                        |
-#|                   |  create|                   |   |    |       +------------------------+
-#|     CREATE +--------------->      install      |   |    |
-#|                   |  server|      and run      |   |    |
-#|     CONVERGE+-------------------->ANSIBLE  +---+   |    |       +------------------------+
-#|                   |        |               +-------------------->  +----------+          |
-#|                   |        | install and run       |    |       |  |Tomcat    |          |
-#|    VERIFY+------------------>Busser-ansiblespec +-------+       |  |          |          |
-#+-------------------+        |  +                 |  |            |  +----------+          |
-#                             |  +--->ServerSpec   +--------------->                        |
-#                             |                       |            |                        |
-#                             +-----------------------+            |                        |
-#                                                                  +------------------------+
-#
-#
-#                   * All connections over SSH
-#
 
+                   * All connections over SSH
+
+```
 
 ## Standalone Tomcat Deployment
 
