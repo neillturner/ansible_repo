@@ -1,5 +1,33 @@
 # ansible_repo
-ansible_repo for testing ansible using test kitchen and ansiblespec testing
+ansible_repo for testing ansible using test kitchen and ansiblespec verifying
+
+
+#                                                                     TOMCAT SERVERS
+#     TEST KITCHEN              ANSIBLE AND SERVERSPEC
+#     WORKSTATION               SERVER                             +------------------------+
+#                             +-----------------------+            |   +---------+          |
+#                             |                       |            |   |Tomcat   |          |
+#+-------------------+        |                   +---------------->   |         |          |
+#|                   |        |                   |   |            |   +---------+          |
+#|    Workstation    |        |                   |   |    +------->                        |
+#|    test-kitchen   |        |                   |   |    |       |                        |
+#|    kitchen-ansible|        |                   |   |    |       |                        |
+#|                   |  create|                   |   |    |       +------------------------+
+#|     CREATE +--------------->      install      |   |    |
+#|                   |  server|      and run      |   |    |
+#|     CONVERGE+-------------------->ANSIBLE  +---+   |    |       +------------------------+
+#|                   |        |               +-------------------->  +----------+          |
+#|                   |        | install and run       |    |       |  |Tomcat    |          |
+#|    VERIFY+------------------>Busser-ansiblespec +-------+       |  |          |          |
+#+-------------------+        |  +                 |  |            |  +----------+          |
+#                             |  +--->ServerSpec   +--------------->                        |
+#                             |                       |            |                        |
+#                             +-----------------------+            |                        |
+#                                                                  +------------------------+
+#
+#
+#                   * All connections over SSH
+#
 
 
 ## Standalone Tomcat Deployment
@@ -8,19 +36,27 @@ ansible_repo for testing ansible using test kitchen and ansiblespec testing
 - Expects CentOS/RHEL 6.x hosts
 
 These playbooks deploy a very basic implementation of Tomcat Application Server,
-version 7. To use them, first edit the "hosts" inventory file to contain the
-hostnames of the machines on which you want Tomcat deployed, and edit the
-group_vars/tomcat-servers file to set any Tomcat configuration parameters you need.
+version 7.
 
-Then run the playbook, like this:
+## Usage
 
-        ansible-playbook -i hosts site.yml
+  * Create one of more servers in a cloud like AWS. THey could even be docker containers.
 
-When the playbook run completes, you should be able to see the Tomcat
-Application Server running on the ports you chose, on the target machines.
+  * Edit the "hosts" inventory file to contain the hostnames of these servers.
 
-This is a very simple playbook and could serve as a starting point for more
-complex Tomcat-based projects.
+  * If using an SSH Key add to repository and config in
+    test/integration/tomcat/ansiblespec/config.yml
+
+  * Config .kitchen.yml
+
+  * kitchen create tomcat-centos-6
+
+  * kitchen converge tomcat-centos-6
+
+  * kitchen verify tomcat-centos-6
+
+##
+
 
 
 

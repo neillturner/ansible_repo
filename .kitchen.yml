@@ -1,27 +1,33 @@
 ---
 driver:
-  name: vagrant
+  name: ec2
 
 provisioner:
   name: ansible_playbook
-  roles_path: roles
   hosts: tomcat-servers
-  require_ansible_repo: true
-  ansible_verbose: true
-  ansible_version:   1.6.2-1.el6
+  ansible_connection: ssh
   extra_vars:
-    a: b
+  ansible_yum_repo: http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 
 platforms:
-  - name: centos-7
-    driver_plugin: vagrant
-    driver_config:
-      box: centos-7
-      box_url: https://github.com/holms/vagrant-centos7-box/releases/download/7.1.1503.001/CentOS-7.1.1503-x86_64-netboot.box
-      network:
-      - ['forwarded_port', {guest: 8080, host: 8080}]
-      - [ 'private_network', { ip: '192.168.33.11' } ]
+  - name: centos-6
+    driver_plugin: softlayer
+
+verifier:
+  name: Busser
+  plugin:
+  - Ansiblespec
 
 suites:
   - name: tomcat
-
+    provisioner:
+      playbook: default.yml
+    driver_config:
+      aws_access_key_id: KAS...
+      aws_secret_access_key: 3UK...
+      aws_ssh_key_id: id_rsa-aws
+      ssh_key: /path/to/id_rsa-aws
+      security_group_ids: ["sg-1a2b3c4d"]
+      region: us-east-1
+      availability_zone: us-east-1b
+      subnet_id: subnet-6d6...

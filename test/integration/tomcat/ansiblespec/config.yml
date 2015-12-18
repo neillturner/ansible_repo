@@ -1,0 +1,7 @@
+---
+-
+  playbook: default.yml
+  inventory: hosts
+  kitchen_path: '/tmp/kitchen'
+  pattern: 'ansiblespec'
+  ssh_key: 'spec/my_private_key.pem'
