@@ -4,4 +4,5 @@
   inventory: hosts
   kitchen_path: '/tmp/kitchen'
   pattern: 'ansiblespec'
-  ssh_key: 'spec/my_private_key.pem'
+  user: vagrant
+  ssh_key: 'spec/tomcat_private_key.pem'

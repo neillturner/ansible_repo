@@ -1,33 +1,33 @@
 ---
 driver:
-  name: ec2
+  name: vagrant
 
 provisioner:
   name: ansible_playbook
+  roles_path: roles
   hosts: tomcat-servers
   ansible_connection: ssh
-  extra_vars:
-  ansible_yum_repo: http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+  private_key: spec/tomcat_private_key.pem
+  ansible_host_key_checking: false
+  ansible_verbose: true
+  ansible_verbosity: 4
 
 platforms:
-  - name: centos-6
-    driver_plugin: softlayer
-
-verifier:
-  name: Busser
-  plugin:
-  - Ansiblespec
+  - name: centos-7
+    driver_plugin: vagrant
+    driver_config:
+      box: centos-7
 
 suites:
-  - name: tomcat
-    provisioner:
-      playbook: default.yml
+  - name: ansible
     driver_config:
-      aws_access_key_id: KAS...
-      aws_secret_access_key: 3UK...
-      aws_ssh_key_id: id_rsa-aws
-      ssh_key: /path/to/id_rsa-aws
-      security_group_ids: ["sg-1a2b3c4d"]
-      region: us-east-1
-      availability_zone: us-east-1b
-      subnet_id: subnet-6d6...
+      network:
+#      - ['private_network', { type: 'dhcp' }]
+      - [ 'private_network', { ip: '172.28.128.6' } ]
+      - ['public_network']
+  - name: tomcat
+    driver_config:
+      network:
+#      - ['private_network', { type: 'dhcp' }]
+      - [ 'private_network', { ip: '172.28.128.7' } ]
+
