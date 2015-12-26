@@ -7,7 +7,6 @@ In this demonstration both servers are centos 7 running under virtual box on you
 could be anywhere like Amazon EC2, or a Docker Container.
 You can take an image of the server after it is build and no comfiguration software is install on the Tomcat Server.
 
-
 ```
      TEST KITCHEN              ANSIBLE AND SERVERSPEC                TOMCAT SERVER
      WORKSTATION               SERVER (built and destroyed      (created separately
