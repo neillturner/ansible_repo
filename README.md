@@ -1,44 +1,21 @@
 # ansible_repo
 ansible_repo for testing ansible using test kitchen and ansiblespec.
 
-This demostrates using test-kitchen, ansible and busser-ansiblespec to build an verify a tomcat server.
-Everything is done via ssh from the Ansible/Serverspec server so nothing is install on the tomcat server apart from java and Tomcat.
+This demonstrates using test-kitchen, ansible and busser-ansiblespec to build and verify a tomcat server.
+Everything is done via ssh from the Ansible/Serverspec server so nothing is installed on the tomcat server apart from Java and Tomcat.
 In this demonstration both servers are centos 7 running under virtual box on your workstation, however the Tomcat server
 could be anywhere like Amazon EC2, or a Docker Container.
 You can take an image of the server after it is build and no comfiguration software is install on the Tomcat Server.
 
-```
-     TEST KITCHEN              ANSIBLE AND SERVERSPEC                TOMCAT SERVER
-     WORKSTATION               SERVER (built and destroyed      (created separately
-     (or Jenkins CI)           automatically)                   could be docker container
-                             +----------------------------+     or multiple servers and roles)
-+-------------------+        |                            |      +-----------------------+
-|   test kitchen    |        |                            |      |                       |
-|   kitchen-ansible | create |                            |      |                       |
-|                   | ser^er |                            |      |      +-----------+    |
-|     CREATE    +------------>               +----------+ |      |      | tomcat    |    |
-|                   |        |               |          | | install     |           |    |
-|                   | install and run        | ansible  +--------------->           |    |
-|     CONVERGE  +------------+--------------->          | | tomcat      +-----------+    |
-|                   |        |               +----------+ |      |                       |
-|                   | install|  +----------+  +---------+ |   test                       |
-|     VERIFY    +--------------->busser-   |-->serverspec--------+---->                  |
-|                   |and run |  |ansiblespec  |         | |      |                       |
-|                   |        |  +----------+  +---------+ |      +-----------------------+
-|     DESTROY   +------------>                            |
-+-------------------+ delete +----------------------------+
-                      server
+![test-kitchen, ansible and busser-ansiblespec](https://github.com/neillturner/ansible_repo/blob/master/kitchen-ansible.png "test-kitchen, ansible and busser-ansiblespec")
 
-                   * All connections over SSH
 
-```
-
-## FIRST STEP: Workstation Software Installation
+## Workstation Software Installation
 
 The first thing you need to do is install the test-kitchen environment on your workstation.
 A useful link is: http://misheska.com/blog/2013/12/26/set-up-a-sane-ruby-cookbook-authoring-environment-for-chef/
 
-The follow instructions are is for Windows PC (it will be similar for Mac):
+The follow instructions are for Windows PC (it will be similar for Mac):
 
 1. Download and install virtualbox from https://www.virtualbox.org/wiki/Downloads.
 2. Download and install Vagrant from https://www.vagrantup.com/downloads.html
@@ -54,15 +31,15 @@ The follow instructions are is for Windows PC (it will be similar for Mac):
   * gem install test-kitchen
   * gem install kitchen-ansible
   * gem install kitchen-vagrant
-7. git clone this repository and in a command window in the ansible_repo directory run command
+7. git clone the repository https://github.com/neillturner/ansible_repo and in a command window in the ansible_repo directory run command
 ```
 kitchen list
 ```
 This will return a list if everyting is correctly installed.
 
-## SECOND STEP: Create Servers in Virtual Box on your Workstation.
+## Create Servers in Virtual Box on your Workstation.
 
-1. review the .kitchen.yml file, specifying IP address that are part of your workstation private address space or
+1. Review the .kitchen.yml file, specifying IP address that are part of your workstation private address space or
 use DHCP to let the network dynamically allocte IP addresses.
 
 2. To bring servers up using DHCP on your workstation run
@@ -76,12 +53,12 @@ and copy to
   ansible_repo\spec\tomcat_private_key.pem
 3. Update the hosts file with the  IP address of the tomcat server.
 
-## THIRD STEP: Build the tomcat server.
+## Build the tomcat server.
 ```
 kitchen converge ansible-centos-7 -l debug
 ```
 
-## FOURTH STEP: Verify the tomcat server.
+## Verify the tomcat server.
 ```
 kitchen verify ansible-centos-7 -l debug
 ```
