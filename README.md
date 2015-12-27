@@ -2,10 +2,10 @@
 ansible_repo for testing ansible using test kitchen and ansiblespec.
 
 This demonstrates using test-kitchen, ansible and busser-ansiblespec to build and verify a tomcat server.
-Everything is done via ssh from the Ansible/Serverspec server so nothing is installed on the tomcat server apart from Java and Tomcat.
-In this demonstration both servers are centos 7 running under virtual box on your workstation, however the Tomcat server
+  * Everything is done via ssh from the Ansible/Serverspec server so nothing is installed on the tomcat server apart from Java and Tomcat.
+  * In this demonstration both servers are centos 7 running under virtual box on your workstation, however the Tomcat server
 could be anywhere like Amazon EC2, or a Docker Container.
-You can take an image of the server after it is build and no comfiguration software is install on the Tomcat Server.
+  * You can take an image of the server after it is build and no comfiguration software is install on the Tomcat Server.
 
 ![test-kitchen, ansible and busser-ansiblespec](https://github.com/neillturner/ansible_repo/blob/master/kitchen-ansible.png "test-kitchen, ansible and busser-ansiblespec")
 
