@@ -13,10 +13,10 @@ provisioner:
   ansible_verbosity: 4
 
 platforms:
-  - name: centos-7
+  - name: centos-7.0
     driver_plugin: vagrant
     driver_config:
-      box: centos-7
+      box: centos-7.0
 
 suites:
   - name: ansible
