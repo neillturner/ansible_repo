@@ -23,9 +23,9 @@ The follow instructions are for Windows PC (it will be similar for Mac):
    * Check the option to add ruby to your path.
 4. Download and install the Windows Ruby DevKit for use with Ruby 2.0 and above (32bits version only) from http://rubyinstaller.org/downloads.
 5. Configure the Ruby DevKit
-   * In the devkit directory run ìruby dk.rb initî.
+   * In the devkit directory run ‚Äúruby dk.rb init‚Äù.
    * Check the config.yml generated has added the the path of the ruby install, if not add it manaully.
-   * run ìruby dk.rb installî to bind it to the ruby installation.
+   * run ‚Äúruby dk.rb install‚Äù to bind it to the ruby installation.
 6. Then install the following gems
   * gem install librarian-ansible
   * gem install test-kitchen
@@ -44,23 +44,23 @@ use DHCP to let the network dynamically allocte IP addresses.
 
 2. To bring servers up using DHCP on your workstation run
 ```
-kitchen create ansible-centos-7 -l debug
-kitchen create tomcat-centos-7 -l debug
+kitchen create ansible-centos-70 -l debug
+kitchen create tomcat-centos-70 -l debug
 ```
-2. So ansible can access the server get the ìprivate_keyî file of the tomcat servers from directory
-  ansible_repo\.kitchen\kitchen-vagrant\kitchen-ansible_repo-tomcat-centos-7\.vagrant\machines\default\virtualbox\private_key
+2. So ansible can access the server get the ‚Äúprivate_key‚Äù file of the tomcat servers from directory
+  ansible_repo\.kitchen\kitchen-vagrant\kitchen-ansible_repo-tomcat-centos-70\.vagrant\machines\default\virtualbox\private_key
 and copy to
   ansible_repo\spec\tomcat_private_key.pem
 3. Update the hosts file with the  IP address of the tomcat server.
 
 ## Build the tomcat server.
 ```
-kitchen converge ansible-centos-7 -l debug
+kitchen converge ansible-centos-70 -l debug
 ```
 
 ## Verify the tomcat server.
 ```
-kitchen verify ansible-centos-7 -l debug
+kitchen verify ansible-centos-70 -l debug
 ```
 
 ##
