@@ -48,9 +48,9 @@ kitchen create ansible-centos-70 -l debug
 kitchen create tomcat-centos-70 -l debug
 ```
 2. So ansible can access the server get the “private_key” file of the tomcat servers from directory
-  ansible_repo\.kitchen\kitchen-vagrant\kitchen-ansible_repo-tomcat-centos-70\.vagrant\machines\default\virtualbox\private_key
+  ansible_repo/.kitchen/kitchen-vagrant/kitchen-ansible_repo-tomcat-centos-70/.vagrant/machines/default/virtualbox/private_key
 and copy to
-  ansible_repo\spec\tomcat_private_key.pem
+  ansible_repo/spec/tomcat_private_key.pem
 3. Update the hosts file with the  IP address of the tomcat server.
 
 ## Build the tomcat server.
