@@ -31,6 +31,7 @@ The follow instructions are for Windows PC (it will be similar for Mac):
   * gem install test-kitchen
   * gem install kitchen-ansible
   * gem install kitchen-vagrant
+  * gem install kitchen-verifier-serverspec
 7. git clone the repository https://github.com/neillturner/ansible_repo and in a command window in the ansible_repo directory run command
 ```
 kitchen list

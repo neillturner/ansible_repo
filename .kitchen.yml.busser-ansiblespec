@@ -18,10 +18,6 @@ platforms:
     driver_config:
       box: centos-7.0
 
-verifier:
-  name: serverspec
-  sudo_path: true
-
 suites:
   - name: ansible
     driver_config:
@@ -29,16 +25,6 @@ suites:
 #      - ['private_network', { type: 'dhcp' }]
       - [ 'private_network', { ip: '172.28.128.6' } ]
       - ['public_network']
-    verifier:
-      patterns:
-      - roles/tomcat/spec/tomcat_spec.rb
-      bundler_path: '/usr/local/bin'
-      rspec_path: '/home/vagrant/bin'
-      env_vars:
-        TARGET_HOST: 172.28.128.7 
-        LOGIN_USER: vagrant
-        SSH_KEY: 'spec/tomcat_private_key.pem'
-        
   - name: tomcat
     driver_config:
       network:
