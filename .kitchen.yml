@@ -30,10 +30,11 @@ suites:
       - [ 'private_network', { ip: '172.28.128.6' } ]
       - ['public_network']
     verifier:
-      patterns:
-      - roles/tomcat/spec/tomcat_spec.rb
+      require_runner: true
+#      patterns:
+#      - roles/tomcat/spec/tomcat_spec.rb
       bundler_path: '/usr/local/bin'
-      rspec_path: '/home/vagrant/bin'
+      rspec_path: '/usr/local/bin'
       env_vars:
         TARGET_HOST: 172.28.128.7 
         LOGIN_USER: vagrant
