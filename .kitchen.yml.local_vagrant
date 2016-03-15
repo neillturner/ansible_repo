@@ -5,12 +5,14 @@ driver:
 provisioner:
   name: ansible_playbook
   roles_path: roles
-  hosts: tomcat-servers
+#  hosts: tomcat-servers
+  ansible_inventory: hosts_2
   ansible_connection: ssh
-  private_key: spec/tomcat_private_key.pem
+  private_key: spec/ansible_private_key.pem
   ansible_host_key_checking: false
   ansible_verbose: true
   ansible_verbosity: 4
+  require_chef_for_busser: false
 
 platforms:
   - name: centos-7.0
@@ -36,10 +38,10 @@ suites:
       bundler_path: '/usr/local/bin'
       rspec_path: '/usr/local/bin'
       env_vars:
-        TARGET_HOST: 172.28.128.7 
+        TARGET_HOST: 172.28.128.7
         LOGIN_USER: vagrant
         SSH_KEY: 'spec/tomcat_private_key.pem'
-        
+
   - name: tomcat
     driver_config:
       network:

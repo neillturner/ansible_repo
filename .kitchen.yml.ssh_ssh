@@ -1,0 +1,42 @@
+---
+driver:
+  name: ssh
+  ssh_key: spec/test.pem
+  username: centos
+  sudo: true
+
+provisioner:
+  name: ansible_playbook
+  roles_path: roles
+  ansible_connection: ssh
+  private_key: spec/test.pem
+  ansible_inventory: inventory/hosts_ssh
+  ansible_host_key_checking: false
+  ansible_verbose: true
+  ansible_verbosity: 4
+
+
+platforms:
+  - name: centos-7.0
+
+verifier:
+  name: serverspec
+  sudo_path: true
+
+suites:
+  - name: ansible
+    driver_config:
+      hostname: '54.229.34.169'
+    verifier:
+      require_runner: true
+#      patterns:
+#      - roles/tomcat/spec/tomcat_spec.rb
+      bundler_path: '/usr/local/bin'
+      rspec_path: '/usr/local/bin'
+      env_vars:
+        TARGET_HOST: 54.229.104.40
+        LOGIN_USER: centos
+        SUDO: true
+        SSH_KEY: spec/test.pem
+
+  - name: tomcat

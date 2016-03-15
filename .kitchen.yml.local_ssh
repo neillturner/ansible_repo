@@ -1,0 +1,28 @@
+---
+driver:
+  name: ssh
+  ssh_key: spec/test.pem
+  username: centos
+  sudo: true
+
+provisioner:
+  name: ansible_playbook
+  hosts: tomcat-servers
+  ansible_connection: local
+  ansible_verbose: true
+  ansible_verbosity: 4
+  require_chef_for_busser: false
+
+platforms:
+  - name: centos-7.0
+
+verifier:
+  name: serverspec
+  sudo_path: true
+
+suites:
+  - name: ansible
+    driver_config:
+      hostname: '54.229.34.169'
+
+
