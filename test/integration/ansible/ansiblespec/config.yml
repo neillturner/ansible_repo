@@ -1,8 +1,0 @@
----
--
-  playbook: default.yml
-  inventory: hosts
-  kitchen_path: '/tmp/kitchen'
-  pattern: 'ansiblespec'
-  user: vagrant
-  ssh_key: 'spec/tomcat_private_key.pem'
