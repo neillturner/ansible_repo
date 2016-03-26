@@ -1,13 +1,17 @@
 # ansible_repo
 ansible_repo for testing ansible using test kitchen and ansiblespec.
 
-This demonstrates using test-kitchen, ansible and busser-ansiblespec to build and verify a tomcat server.
+This demonstrates using test-kitchen, ansible and ansiblespec to build and verify a tomcat server.
   * Everything is done via ssh from the Ansible/Serverspec server so nothing is installed on the tomcat server apart from Java and Tomcat.
   * In this demonstration both servers are centos 7 running under virtual box on your workstation, however the Tomcat server
 could be anywhere like Amazon EC2, or a Docker Container.
   * You can take an image of the server after it is build and no comfiguration software is install on the Tomcat Server.
+  * this is using ansible in ssh connection mode to do remote configuration.
 
-![test-kitchen, ansible and busser-ansiblespec](https://github.com/neillturner/ansible_repo/blob/master/kitchen-ansible.png "test-kitchen, ansible and busser-ansiblespec")
+Alternatively tomcat can be installed and configured on the same server as ansible. This is using the ansible local connection mode.
+
+
+![test-kitchen, ansible and serverspec](https://github.com/neillturner/ansible_repo/blob/master/kitchen-ansible.png "test-kitchen, ansible and serverspec")
 
 
 ## Workstation Software Installation
@@ -19,9 +23,9 @@ The follow instructions are for Windows PC (it will be similar for Mac):
 
 1. Download and install virtualbox from https://www.virtualbox.org/wiki/Downloads.
 2. Download and install Vagrant from https://www.vagrantup.com/downloads.html
-3. Download and install the Windows RubyInstaller for 32 bit Ruby 2.1 from http://rubyinstaller.org/downloads.
+3. Download and install the Windows RubyInstaller for 64 bit Ruby 2.1 from http://rubyinstaller.org/downloads.
    * Check the option to add ruby to your path.
-4. Download and install the Windows Ruby DevKit for use with Ruby 2.0 and above (32bits version only) from http://rubyinstaller.org/downloads.
+4. Download and install the Windows Ruby DevKit for use with Ruby 2.0 and above (64bits version only) from http://rubyinstaller.org/downloads.
 5. Configure the Ruby DevKit
    * In the devkit directory run “ruby dk.rb init”.
    * Check the config.yml generated has added the the path of the ruby install, if not add it manaully.
@@ -39,7 +43,7 @@ kitchen list
 This will return a list if everything is correctly installed.
 
 There are 2 ways to run ansible either locally or remotely. In the local option you just need one server and ansible and the software you are configuring are all installed on the one server.
-Inthe remote option you need at least 2 servers. One server will get ansible installed on it and it will then use ssh to configure the second server remotely.
+In the remote option you need at least 2 servers. One server will get ansible installed on it and it will then use ssh to configure the second server remotely.
 
 Use the following kitchen yml files for each option:
   * .kitchen.yml.local_ssh - locally against any cloud where server accessible via ip address.
@@ -47,11 +51,11 @@ Use the following kitchen yml files for each option:
   * .kitchen.yml.local_vagrant - locally using servers via vagrant.
   * .kitchen.yml.ssh_vagrant - remotely using servers via vagrant.
 
-When using rename spec/spec_helper_local.rb  to spec/spec_helper.rb
+When using rename spec/spec_helper_local.rb to spec/spec_helper.rb and a separate tomcat servers is not required.
 
 ## Using AWS or any cloud where servers can be access via IP addresses.
 
-1. Create 2 linux servers one for ansibl and one for tomcat using a keypair using say AWS Cloud Formation.
+1. Create 2 linux servers one for ansible and one for tomcat using a keypair using say AWS Cloud Formation.
 2. In ansible_windows_repo update the inventory/hosts_ssh with IP address of tomcat server.
 3. In the .kitchen.yml file
    * Set the ssh_key  to the aws keypair for linux server e.g. spec/test.pem
