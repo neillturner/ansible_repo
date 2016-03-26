@@ -36,9 +36,34 @@ The follow instructions are for Windows PC (it will be similar for Mac):
 ```
 kitchen list
 ```
-This will return a list if everyting is correctly installed.
+This will return a list if everything is correctly installed.
 
-## Create Servers in Virtual Box on your Workstation.
+There are 2 ways to run ansible either locally or remotely. In the local option you just need one server and ansible and the software you are configuring are all installed on the one server.
+Inthe remote option you need at least 2 servers. One server will get ansible installed on it and it will then use ssh to configure the second server remotely.
+
+Use the following kitchen yml files for each option:
+  * .kitchen.yml.local_ssh - locally against any cloud where server accessible via ip address.
+  * .kitchen.yml.ssh_ssh - remotely against any cloud where server accessible via ip address.
+  * .kitchen.yml.local_vagrant - locally using servers via vagrant.
+  * .kitchen.yml.ssh_vagrant - remotely using servers via vagrant.
+
+When using rename spec/spec_helper_local.rb  to spec/spec_helper.rb
+
+## Using AWS or any cloud where servers can be access via IP addresses.
+
+1. Create 2 linux servers one for ansibl and one for tomcat using a keypair using say AWS Cloud Formation.
+2. In ansible_windows_repo update the inventory/hosts_ssh with IP address of tomcat server.
+3. In the .kitchen.yml file
+   * Set the ssh_key  to the aws keypair for linux server e.g. spec/test.pem
+   * Set the hostname to ip address of linux server  e.g.'54.229.103.38'
+4. create, converge and verify the ansible-centos-70 server
+```
+kitchen create ansible-centos-70 -l debug
+kitchen converge ansible-centos-70 -l debug
+kitchen verify ansible-centos-70 -l debug
+```
+
+## Create Servers in Vagrant on your Workstation.
 
 1. Review the .kitchen.yml file, specifying IP address that are part of your workstation private address space or
 use DHCP to let the network dynamically allocte IP addresses.

@@ -23,6 +23,11 @@ verifier:
 suites:
   - name: ansible
     driver_config:
-      hostname: '54.229.34.169'
+      hostname: '54.171.220.107'
+    verifier:
+      patterns:
+      - roles/tomcat/spec/tomcat_spec.rb
+      bundler_path: '/usr/local/bin'
+      rspec_path: '/usr/local/bin'
 
 
