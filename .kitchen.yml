@@ -8,7 +8,7 @@
 #
 driver:
   name: ssh
-  ssh_key: spec/test.pem
+  ssh_key: C:/repository/templates/test.pem
   username: centos
   sudo: true
 
@@ -25,16 +25,16 @@ platforms:
 
 verifier:
   name: serverspec
-  sudo_path: true
 
 suites:
   - name: ansible
     driver_config:
-      hostname: '54.171.220.107'
+      hostname: localhost
+      port: 5580
+#      username: ubuntu
+      ssh_key: C:/keys/my.pem
     verifier:
       patterns:
       - roles/tomcat/spec/tomcat_spec.rb
-      bundler_path: '/usr/local/bin'
-      rspec_path: '/usr/local/bin'
 
 

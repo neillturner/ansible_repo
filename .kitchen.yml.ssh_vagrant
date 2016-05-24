@@ -1,4 +1,9 @@
 ---
+#
+#  This demostrates using kitchen-verifier-serverspec
+#  Remotely directly on the server running serverspec in ssh mode
+#  you must have a spec_helper.rb that sets :ssh
+#
 driver:
   name: vagrant
 
