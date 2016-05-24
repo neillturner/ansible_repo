@@ -1,7 +1,7 @@
 # ansible_repo
 ansible_repo for testing ansible using test kitchen and verfier-serverspec. 
 
-There are three ways to run verifier serverspec:
+There are three ways to run verifier-serverspec:
   * Remotely directly on the server running serverspec in exec mode
   * Remotely directly on the server running serverspec in ssh mode
   * Locally on your workstation running serverspec in ssh mode
