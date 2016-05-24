@@ -3,14 +3,20 @@ ansible_repo for testing ansible using test kitchen and verfier-serverspec.
 
 There are three ways to run verifier-serverspec:
   * Remotely directly on the server running serverspec in exec mode
-  * Remotely directly on the server running serverspec in ssh mode
   * Locally on your workstation running serverspec in ssh mode
+  * Remotely directly on the server running serverspec in ssh mode
 
 ## Remotely directly on server running serverspec in exec mode
 
 This allow testing directly on the server. Typicaly used in conjunction with ansible using local connection.
 
 See .kitchen.yml 
+
+## Locally on your workstation running serverspec in ssh mode
+
+This allows you not to have to install ruby and serverspec on the server being configured as serverspec is run on your workstation in ssh mode.
+
+see .kitchen.yml.local_ssh
 
 ## Remotely directly on the server running serverspec in ssh mode
 
@@ -29,12 +35,6 @@ Alternatively tomcat can be installed and configured on the same server as ansib
 
 
 ![test-kitchen, ansible and serverspec](https://github.com/neillturner/ansible_repo/blob/master/kitchen-ansible.png "test-kitchen, ansible and serverspec")
-
-## Locally on your workstation running serverspec in ssh mode
-
-This allows you not to have to install ruby and serverspec on the server being configured as serverspec is run on your workstation in ssh mode.
-
-see .kitchen.yml.local_ssh
 
 
 ## Workstation Software Installation
