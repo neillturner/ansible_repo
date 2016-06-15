@@ -19,10 +19,10 @@ provisioner:
 
 
 platforms:
-  - name: centos-7.0
+  - name: centos-7.2
     driver_plugin: vagrant
-    driver_config:
-      box: centos-7.0
+#    driver_config:
+#      box: centos-7.0
 
 verifier:
   name: serverspec
@@ -33,8 +33,8 @@ suites:
     driver_config:
       network:
 #      - ['private_network', { type: 'dhcp' }]
-      - [ 'private_network', { ip: '172.28.128.6' } ]
-      - ['public_network']
+#      - [ 'private_network', { ip: '172.28.128.6' } ]
+#      - ['public_network']
     verifier:
       require_runner: true
 #      patterns:
@@ -50,5 +50,5 @@ suites:
     driver_config:
       network:
 #      - ['private_network', { type: 'dhcp' }]
-      - [ 'private_network', { ip: '172.28.128.7' } ]
+#      - [ 'private_network', { ip: '172.28.128.7' } ]
 
