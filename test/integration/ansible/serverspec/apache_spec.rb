@@ -16,6 +16,6 @@
     end
   end
 
-  describe port(8080) do
+  describe port(80) do
     it { should be_listening }
   end

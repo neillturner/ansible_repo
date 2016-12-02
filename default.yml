@@ -1,11 +1,10 @@
 ---
-# This playbook deploys a simple standalone Tomcat 7 server.
+# This playbook deploys a simple apache server.
 
-- hosts: tomcat-servers
-  user: centos
-#  remote_user: vagrant
-  sudo: yes
-
+- hosts: apache-servers
+  remote_user: centos
+  become: yes
+  become_method: sudo
+#- hosts: all
   roles:
-    - selinux
-    - tomcat
+  - geerlingguy.apache

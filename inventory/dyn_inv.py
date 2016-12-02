@@ -3,7 +3,7 @@
 import json
 
 aa = {
-    "tomcat-servers": {
+    "apache-servers": {
         "hosts": ['172.28.128.7'],
     }
 }

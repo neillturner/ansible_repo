@@ -1,6 +1,6 @@
 Author:: Neill Turner (<neillwturner@gmail.com>)
 
-Copyright 2014 Neill Turner
+Copyright 2016 Neill Turner
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
